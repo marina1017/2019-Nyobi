@@ -1,6 +1,7 @@
-var classes1 = ['あ', 'い', 'う', 'え', 'お', 'か', 'き', 'く', 'け', 'こ'];
-for (var i = 0; i < classes1.length; i++) {
-    for (var t = 0; t < classes1.length; t++){
-        document.write("<p>"+ classes1[i] + classes1[t] + "</p>")
-    }
+var myBirthTime = new Date(1992,10,17,12,30);
+function updateparagraph(){
+    var now = new Date();
+    var seconds = (now.getTime() - myBirthTime.getTime()) /1000;
+    document.getElementById("birth-time").innerText = "生まれてから" + seconds
 }
+setInterval(updateparagraph, 50);
