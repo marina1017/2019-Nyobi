@@ -1,0 +1,14 @@
+{
+  "name": "IntroductionServerSideProgramming",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "01": "yarn node src/01/app.js",
+    "d01": "yarn node src/01/app.js"
+  },
+  "devDependencies": {
+    "node": "^13.1.0",
+    "parcel-bundler": "^1.12.4"
+  }
+}
