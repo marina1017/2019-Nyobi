@@ -11,6 +11,18 @@
   },
   "devDependencies": {
     "node": "^13.1.0",
-    "parcel-bundler": "^1.12.4"
+    "parcel-bundler": "^1.12.4",
+    "request": "^2.88.0",
+    "yo": "^3.0.0",
+    "generator-hubot": "^1.0.0",
+    "coffeescript": "^1.12.7"
+  },
+  "dependencies": {
+    "hubot": "^3.3.2",
+    "hubot-diagnostics": "^1.0.0",
+    "hubot-help": "^1.0.1",
+    "hubot-redis-brain": "^1.0.0",
+    "hubot-rules": "^1.0.0",
+    "hubot-slack": "^4.7.1"
   }
 }
