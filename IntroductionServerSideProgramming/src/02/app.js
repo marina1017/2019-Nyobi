@@ -12,7 +12,7 @@ function fib(n) {
 //これだとめちゃくちゃ時間がかかってしまう
 //「time node src/02/app.js」というコマンドを実行してみると
 //2.87 real         2.79 user         0.02 sysという結果になる
-//計算量はO(n)になる
+//計算量はO(n*2)になる
 const length = 40;
 for (let i = 0; i<= length; i++){
     console.log(fib(i));
