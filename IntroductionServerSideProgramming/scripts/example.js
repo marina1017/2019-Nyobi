@@ -1,3 +1,14 @@
+//N予備06番目 おそらくscripts/example.jsが読み込まれているぽい
+//実行の仕方
+//yarn hubot
+//hello>と打ち込むと返答が帰ってくる
+//webからSlackにHubotアプリを導入
+//環境変数にAPIトークンをいれる
+//わからなくなったら管理の中の編集にありそう
+
+//ローカルでの実行方法
+//env HUBOT_SLACK_TOKEN=xoxb-xxxxxxx-xxxxxxx-xxxxxxxx yarn hubot --adapter slack
+
 'use strict'
 
 // Description:
@@ -15,6 +26,13 @@ module.exports = (robot) => {
   robot.hear(/hello>/i, (msg) => {
     const user_id = msg.message.user.id;
     msg.send(`Hello, <@${user_id}>`);
+  });
+
+  robot.hear(/おみくじ/i, (msg) => {
+    const user_id = msg.message.user.id;
+    const lots = ['大吉', '吉', '中吉', '末吉', '凶'];
+    const lot = lots[Math.floor(Math.random() * lots.length)];
+    msg.send(`${lot}, <@${user_id}>`);
   });
 
   // robot.hear(/badger/i, (res) => {
