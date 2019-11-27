@@ -74,6 +74,7 @@ module.exports = (robot) => {
   });
 
   robot.respond(/donelist/i, (msg) => {
+    //todo.list() の処理が非常に重い処理である可能性があることを考慮したため
     const donelist = todo.donelist();
     if (donelist.list === 0) {
       msg.send("完了したTODOはありません");
