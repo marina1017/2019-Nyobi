@@ -7,7 +7,8 @@
     "01": "yarn node src/01/app.js",
     "d01": "yarn node src/01/app.js",
     "d02": "yarn node src/02/app.js",
-    "d03": "node app.js"
+    "d03": "node app.js",
+    "d09": "node src/09/app.js"
   },
   "devDependencies": {
     "node": "^13.1.0",
