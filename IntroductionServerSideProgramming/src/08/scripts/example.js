@@ -65,9 +65,8 @@ module.exports = (robot) => {
   robot.respond(/list/i, (msg) => {
     //join 関数は、 配列の全ての要素を与えられた文字列で繋いで一つの文字列にする関数
     //改行を表すエスケープシーケンスで結合
-    console.log(todo.list());
-    console.log(isEmpty(todo.list()));
-    if (isEmpty(todo.list())) {
+    const list = todo.list();
+    if (list.length === 0) {
       msg.send("TODOはありません");
     } else {
       msg.send(todo.list().join('\n'));
@@ -75,7 +74,8 @@ module.exports = (robot) => {
   });
 
   robot.respond(/donelist/i, (msg) => {
-    if (isEmpty(todo.donelist())) {
+    const donelist = todo.donelist();
+    if (donelist.list === 0) {
       msg.send("完了したTODOはありません");
     } else {
       msg.send(todo.donelist().join('\n'));
@@ -196,21 +196,4 @@ module.exports = (robot) => {
   //   robot.brain.set('totalSodas', 0)
   //   res.reply('zzzzz')
   // })
-}
-
-function isEmpty(val){
-
-  if ( !val ) {//null or undefined or ''(空文字) or 0 or false
-
-      if ( val !== 0 && val !== false ) {
-          return true;
-      }
-
-  }else if( typeof val == "object"){//array or object
-
-      return Object.keys(val).length === 0;
-
-  }
-
-  return false;//値は空ではない
 }
