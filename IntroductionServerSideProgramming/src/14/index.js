@@ -16,8 +16,7 @@ const server = http.createServer((req, res) => {
      * warn:警告。問題となる可能性がある情報に使う。 エラー標準出力
      * error:エラー。直ちに対応が必要な情報に使う。 エラー標準出力
      */
-    const now = new Date()
-    console.info('[' + now + '] Requested by ' + req.connection.remoteAddress);
+    console.info('[' + new Date() + '] Requested by ' + req.connection.remoteAddress);
 
     //writeHead(statusCode: number, reasonPhrase?: string, headers?: OutgoingHttpHeaders): ServerResponse
     //内容の形式 Content-Type が、text/plain という通常のテキストであるという情報
@@ -25,6 +24,9 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, {
         'content-Type': 'text/plain; charset=utf-8'
     });
+    //res オブジェクトの、 write 関数は HTTP のレスポンスの内容を書き出します。
+    res.write(req.headers['user-agent']);
+
     //res オブジェクトの、 write 関数は HTTP のレスポンスの内容を書き出します。
     res.write(req.headers['user-agent']);
     console.info('/////通ってる？////');
@@ -35,7 +37,8 @@ const server = http.createServer((req, res) => {
             console.info('/////GET/////');
             break;
         case 'POST':
-            res.write('POST '+ req.url):
+            res.write('POST '+ req.url);
+            let rawData = '';
             req.on('data', (chunk) => {
                 rawData = rawData + chunk;
             }).on('end', () => {
@@ -43,10 +46,13 @@ const server = http.createServer((req, res) => {
             });
             console.info('/////POST/////');
             break;
+        case 'DELETE':
+            res.write('DELETE' + req.url);
+            break;
         default:
             console.info('//////////');
             break;
-    }
+    };
 
     //リクエストヘッダの user-agent の中身を、レスポンスの内容として書き出しています。
     res.end();

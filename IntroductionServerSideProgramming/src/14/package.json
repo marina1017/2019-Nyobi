@@ -1,0 +1,9 @@
+{
+  "name": "09",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "node": "^13.1.0"
+  }
+}

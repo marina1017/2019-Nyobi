@@ -15,6 +15,8 @@ const server = http.createServer((req, res) => {
     });
     //res オブジェクトの、 write 関数は HTTP のレスポンスの内容を書き出します。
     //res.write(req.headers['user-agent']);
+
+    //HTMLの中身を書き出す場合はこう
     res.write('<!DOCTYPE html><html lang="ja"><body><h1>HTMLの一番大きい見出しを表示します</h1></body></html>');
     //リクエストヘッダの user-agent の中身を、レスポンスの内容として書き出しています。
     res.end()
