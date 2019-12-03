@@ -1,29 +1,21 @@
 {
   "name": "IntroductionServerSideProgramming",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/14/index.js",
   "license": "MIT",
   "scripts": {
     "01": "yarn node src/01/app.js",
     "d01": "yarn node src/01/app.js",
     "d02": "yarn node src/02/app.js",
     "d03": "node app.js",
-    "d09": "node src/09/app.js"
+    "d09": "node src/09/app.js",
+    "s14": "node sketches/14",
+    "d14": "node src/14/index.js"
   },
   "devDependencies": {
-    "node": "^13.1.0",
-    "parcel-bundler": "^1.12.4",
-    "request": "^2.88.0",
-    "yo": "^3.0.0",
-    "generator-hubot": "^1.0.0",
-    "coffeescript": "^1.12.7"
+    "parcel-bundler": "^1.12.4"
   },
-  "dependencies": {
-    "hubot": "^3.3.2",
-    "hubot-diagnostics": "^1.0.0",
-    "hubot-help": "^1.0.1",
-    "hubot-redis-brain": "^1.0.0",
-    "hubot-rules": "^1.0.0",
-    "hubot-slack": "^4.7.1"
+  "engines": {
+    "node": ">=12.12.0"
   }
 }

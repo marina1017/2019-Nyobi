@@ -16,33 +16,53 @@ const server = http.createServer((req, res) => {
      * warn:警告。問題となる可能性がある情報に使う。 エラー標準出力
      * error:エラー。直ちに対応が必要な情報に使う。 エラー標準出力
      */
-    console.info('[' + new Date() + '] Requested by ' + req.connection.remoteAddress);
+    const now = new Date()
+    console.info('[' + now + '] Requested by ' + req.connection.remoteAddress);
 
     //writeHead(statusCode: number, reasonPhrase?: string, headers?: OutgoingHttpHeaders): ServerResponse
     //内容の形式 Content-Type が、text/plain という通常のテキストであるという情報
     //文字セット charset が utf-8 であるという情報
     res.writeHead(200, {
-        'content-Type': 'text/plain; charset=utf-8'
+        'content-Type': 'text/html; charset=utf-8'
     });
-    //res オブジェクトの、 write 関数は HTTP のレスポンスの内容を書き出します。
-    res.write(req.headers['user-agent']);
-
-    //res オブジェクトの、 write 関数は HTTP のレスポンスの内容を書き出します。
-    res.write(req.headers['user-agent']);
-    console.info('/////通ってる？////');
+    
     // メソッドによって分岐させている
+    //GETでアクセスした時にアンケートフォームを表示させる
     switch (req.method) {
         case 'GET':
             res.write('GET ' + req.url);
-            console.info('/////GET/////');
+            const fs = require('fs');
+            var path = require('path');
+            //実行したnode.jsのパス
+            const pathstr = process.argv[1]
+            console.log("////////////")
+            console.log(path.dirname(pathstr))
+            console.log("////////////")
+            // // カレントディレクトリ
+            // const path_cureent = process.cwd();
+            // // ファイル名の一覧
+            // const filenames = fs.readdirSync(path);
+            // console.log(filenames);
+
+            const rs = fs.createReadStream(path.dirname(pathstr) + '/form.html');
+            //const rs = fs.createReadStream('./form.html');
+            //パイプをしている
+            //Node.js では Stream の形式のデータは、読み込み用の Stream と書き込み用の Stream を繋いで そのままデータを受け渡すことができる。 
+            //その関数が pipe という関数の機能
+            //HTTP のレスポンスのコンテンツとしてファイルの内容をそのまま 返す。
+            rs.pipe(res);
             break;
+
         case 'POST':
-            res.write('POST '+ req.url);
             let rawData = '';
             req.on('data', (chunk) => {
                 rawData = rawData + chunk;
             }).on('end', () => {
-                console.info('[' + now + '] Data posted: ' + rawData);
+                const decoded = decodeURIComponent(rawData);
+                console.info('[' + now + '] 投稿:' + decoded);
+                res.write('<!DOCTYPE html> <html lang="ja"><body><h1>' + decoded + 'が投稿されました</h1></body></html>');
+                //POST メソッドを使った場合のみ res.end を行うようにする
+                res.end();
             });
             console.info('/////POST/////');
             break;
@@ -53,9 +73,6 @@ const server = http.createServer((req, res) => {
             console.info('//////////');
             break;
     };
-
-    //リクエストヘッダの user-agent の中身を、レスポンスの内容として書き出しています。
-    res.end();
 }).on('error', (e) => {
     console.error('['+ new Date() + '] Server Error', e);
 }).on('clientError', (e) => {
