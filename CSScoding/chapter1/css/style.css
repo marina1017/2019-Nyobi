@@ -1,0 +1,152 @@
+@charset "UTF-8";
+/* --------------------------------
+ * base
+ * -------------------------------- */
+html {
+    font-size: 62.5%;
+}
+
+body {
+    color: #333;
+    /* rem = root + em　CCS3からremが導入されたルート用要素のフォントサイズを1とする値 */
+    /* 常にhtml要素に対する倍率を指定すればいいかららく */
+    font-size: 1.2rem;
+    font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+a:link, a:visited, a:hover, a:active {
+    color: #d03c56;
+    /* もともと表示されている下線をはずしてしまう */
+    text-decoration: none;
+}
+
+
+/* --------------------------------
+ * header
+ * -------------------------------- */
+.header {
+    /* 画面いっぱいに伸びるデザインだから */
+    width: 100%;
+    padding: 28px 0 10px;
+    /* 幅1px の左上はしからよこに背景画像を敷き詰めることで幅いっぱいのストライプを作る */
+    /* 背景画像を透明にしておくと背景色が変わっても大丈夫 */
+    background: url('../images/bg-header.gif') repeat-x;
+    /* box-shadow:[右方向のずれ]「下方向のズレ」「ぼかしの大きさ」「拡張の大きさ」「影の色」 */
+    box-shadow: 0 0 10px 1px #e3e3e3;
+}
+
+.logo {
+    /* サイトロゴの画像の幅 */
+    width: 225px;
+    /* サイトロゴの画像の高さ */
+    height: 56px;
+    /* 中央寄せ */
+    margin: 0 auto;
+    background: url('../images/logo.png') no-repeat;
+    text-indent: 100%;
+    /* 折り返さないようにする */
+    white-space: nowrap;
+    /* 画像の上に適すを表示しないようする */
+    overflow: hidden;
+}
+/* logoのなかのa要素のクリック領域がロゴ画像をぴったり覆うようにする */
+.logo a {
+    /* a要素のdisplayプロパティの初期値はinlineのためこのままだと縦幅と横幅を指定できないから blockを設定する */
+    display: block;
+    /* 親要素と同じ大きさにすればいいから */
+    width: 100%;
+    height: 100%;
+}
+
+.global-nav {
+    margin-top: 15px;
+    /* 子のul要素にも指定が引き継がれ中のnav-itemを中央寄せができる */
+    text-align: center;
+}
+
+.global-nav .nav-item {
+    /* 横に並ぶようにする */
+    display: inline-block;
+    margin: 0 10px;
+}
+
+/* nav-item自体に高さは指定してない、aの幅と高さに合わせて伸び縮することになる */
+.global-nav .nav-item a {
+    /* 横に並ぶようにする */
+    display: inline-block;
+    width: 100px;
+    /* height はブロックレベル要素、line-height はインライン要素に専用の属性 */
+    /* line-heightとheightを同じ高さにすることで縦方向に中央寄せできる */
+    height: 30px;
+    /* line-height 行の高さを指定する際に使用 */
+    line-height: 30px;
+    /* 横方向の中央揃え */
+    text-align: center;
+    border-radius: 8px;
+    color: #666;
+    font-size: 1.3rem;
+    /* 文字のスペース */
+    letter-spacing: 1px;
+    /* 少し時間をかけてふわっと変化するようにする */
+    transition: 0.15s;
+}
+
+/* 「.mav-itemくらすとactiveくらすの両方がついた要素を指定できる」 */
+/*  a:hover　任意のクラスにhoverをつけると「その要素をホバーしたとき」のスタイルを定義できる*/
+.global-nav .nav-item.active a,
+.global-nav .nav-item a:hover {
+    background-color: #d03c56;
+    color: #fff;
+}
+
+/* --------------------------------
+ * wrapper
+ * -------------------------------- */
+
+.wrapper {
+    width: 970px;
+    /* ボロックレベルの要素を親要素に対して横方向に中央寄せしたい場合はautoにする */
+    margin: 30px auto 40px;
+}
+
+.clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.main {
+    /* IE対策　ブロックレベルの要素として表示されるように指定する */
+    display: block;
+    /* mainとsidemenuを横並びにするため 左に寄せる*/
+    float: left;
+    width: 660px;
+}
+
+.sidemenu {
+    /* mainとsidemenuを横並びにするため　右に寄せる */
+    float: right;
+    width: 275px;
+}
+
+.footer {
+    width: 100%
+}
+
+/* 確認用 */
+/* .header, .main, .sidemenu, .footer {
+    border: 1px solid #aaa;
+    background-color: #ccc;
+}
+
+.header, .footer {
+    height: 100px;
+}
+
+.main, .sidemenu {
+    height: 500px;
+} */
