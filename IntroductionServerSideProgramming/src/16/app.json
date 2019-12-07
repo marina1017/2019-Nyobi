@@ -1,0 +1,8 @@
+{
+    "name": "Enquetes",
+    "description": "Enquetes for favorite foods.",
+    "repository": "https://github.com/marina1017/2019-Nyobi",
+    "logo": "",
+    "keywords": ["node"],
+    "image": "heroku/nodejs"
+  }
