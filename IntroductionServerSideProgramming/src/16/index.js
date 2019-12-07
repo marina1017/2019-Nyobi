@@ -1,4 +1,28 @@
-'use strict';
+//Herokuを使ってHerokuにデプロイする
+/**
+ * やったこと
+ * herokuをbrewでいれた
+ * heroku　CLIでログインした
+ * heroku login -i
+ * 
+ * //herokuのリポジトリ的なやつをつくる
+ * heroku create
+ * 
+ * //さくせいしたやつ
+ * blooming-reaches-35188
+ * 
+ * //herokuの実行に必要なProcfileを作成
+ * echo "web: node index.js" > Procfile
+ * 
+ * //gitでherokuに向き先をかえた
+ * git remote -vでかくにんできる
+ * 
+ * //herokuデプロイ
+ * git push heroku master:master
+ */
+
+
+use strict';
 const http = require('http');
 //putテンプレートエンジンを使う
 const pug = require('pug');
