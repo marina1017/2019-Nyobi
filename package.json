@@ -1,24 +1,5 @@
 {
-  "name": "IntroductionServerSideProgramming",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
   "scripts": {
-    "01": "yarn node src/01/app.js",
-    "d01": "yarn node src/01/app.js",
-    "d02": "yarn node src/02/app.js",
-    "d03": "node app.js",
-    "d09": "node src/09/app.js",
-    "s14": "node sketches/14",
-    "d14": "node src/14/index.js",
-    "d15": "node src/15/index.js",
-    "d16": "node src/16/index.js"
-  },
-  "devDependencies": {
-    "pug": "^2.0.4",
-    "parcel-bundler": "^1.12.4"
-  },
-  "engines": {
-    "node": "12.x"
+    "postinstall": "cd IntroductionServerSideProgramming && npm install"
   }
 }
