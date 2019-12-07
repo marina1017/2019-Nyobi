@@ -14,7 +14,7 @@
     "d15": "node src/15/index.js",
     "d16": "node src/16/index.js"
   },
-  "devDependencies": {
+  "dependencies":{
     "pug": "^2.0.4",
     "parcel-bundler": "^1.12.4"
   },
