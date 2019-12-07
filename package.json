@@ -1,6 +1,6 @@
 {
   "//": "↓これみて対処　https://github.com/heroku/heroku-buildpack-nodejs/issues/221",
   "scripts": {
-    "postinstall": "cd IntroductionServerSideProgramming && yarn"
+    "postinstall": "cd IntroductionServerSideProgramming && npm install"
   }
 }
