@@ -22,7 +22,7 @@
  */
 
 
-use strict';
+'use strict';
 const http = require('http');
 //putテンプレートエンジンを使う
 const pug = require('pug');
