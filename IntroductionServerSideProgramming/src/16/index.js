@@ -11,7 +11,7 @@
  * //さくせいしたやつ
  * blooming-reaches-35188
  * 
- * //herokuの実行に必要なProcfileを作成
+ * //herokuの実行に必要なProcfileを作成(いるのか？というかんじだが)
  * echo "web: node index.js" > Procfile
  * 
  * //gitでherokuに向き先をかえた
@@ -19,6 +19,9 @@
  * 
  * //herokuデプロイ
  * git push heroku master:master
+ * 
+ * //どうしてもルートのpackage.jsonを見られてしまうので上のpackage.jsonをみてくれ
+ * startが必要だった(困った)
  */
 
 
