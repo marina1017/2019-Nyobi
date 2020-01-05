@@ -22,6 +22,9 @@
   
   Slack上での実行は下記のようにする
   nakagawa-hubot-study todo 鉛筆を買う
+
+  //Herokuにあげるにはこのようにする
+  web: env HUBOT_SLACK_TOKEN=xoxb-16455131522-XXXXXXXXXXXXXXXXXXXX bin/hubot --adapter slack
  */
 
 

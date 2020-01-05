@@ -22,6 +22,7 @@
  * 
  * //どうしてもルートのpackage.jsonを見られてしまうので上のpackage.jsonをみてくれ
  * startが必要だった(困った)
+ * 詳細は一番ルートのpackage.jsonをみること
  */
 
 

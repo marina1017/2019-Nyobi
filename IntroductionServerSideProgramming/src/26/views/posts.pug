@@ -1,0 +1,59 @@
+doctype html
+html(lang="ja")
+    head
+        meta(charset="UTF-8")
+        link(rel="stylesheet",
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css",
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm",
+        crossorigin="anonymous")
+        title 秘密の匿名掲示板
+    //- Pug では、タグ名.クラス名 と続けることで、タグに class 属性 を付与する body.container の箇所は、 <body class="container"> に変換
+    body.container
+        //- div 要素には my-3 というクラスが設定されていますが、これは Bootstrap に備わっている余白設定用のクラスです。
+        //- my-3 の場合、縦方向（ y 軸方向）への余白（ margin ）を、5 段階用意されているうちの 3 段階目の値に指定するものです。
+        div.my-3
+            //- a タグにボタンのデザインを適用するクラス btn btn-info 、さらに右側に配置するクラス float-right を設定し、 h1 要素の上に配置しました。
+            a(href="/logout").btn.btn-info.float-right ログアウト
+            h1 秘密の匿名掲示板
+        h2 新規投稿
+        form(method="post" action="/posts")
+            div.form-group
+                textarea(name="content" cols=40 rows=4).form-control
+            div.form-group
+                button(type="submit").btn.btn-primary 投稿
+
+        h2 投稿一覧
+        //-  each からの部分で、 pug の iteration によるループ機能を使っています。
+        each post in posts
+            //- my-3 クラスを使って y 軸方向に margin を設定しています。
+            div.card.my-3
+                div.card-header
+                    - var isPostedByAdmin = (post.postedBy === 'admin')
+                if isPostedByAdmin
+                    span #{post.id} : 管理人 *
+                else
+                    span #{post.id} : ID:#{post.trackingCookie}
+                div.card-body
+                    p.card-text!=post.content
+                div.card-footer
+                    div 投稿日時: #{post.formattedCreatedAt}
+                    //- pug のテンプレート内に JavaScript のコードを記述する方法です
+                    //- 管理人の場合はユーザー名が見えるようにする
+                    - var isAdmin = (user === 'admin')
+                    if isAdmin
+                        div 投稿者：#{post.postedBy}
+                        //- 各投稿を行ったユーザーのユーザー名 post.postedBy が、アクセスしているユーザー名 user と同じ場合に、 削除可能であるという変数 isDeletable が true となる式です。
+                        //- 管理人の場合も削除でき
+                    - var isDeletable = (user === post.postedBy || isAdmin)
+                    if isDeletable
+                        //- /posts?delete=1 というパスに POST メソッドでリクエストを送ります。
+                        form(method="post" action="/posts?delete=1")
+                        //- この非表示の部品で、投稿につけられた ID を送るようにしています。
+                        //- この ID を用いて削除処理をサーバー上で行います。
+                        input(type="hidden" name="id" value=post.id)
+                        button(type="submit").btn.btn-danger.float-right 削除
+
+        script(src="https://code.jquery.com/jquery-3.4.1.slim.min.js")
+        script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js",
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl",
+        crossorigin="anonymous")

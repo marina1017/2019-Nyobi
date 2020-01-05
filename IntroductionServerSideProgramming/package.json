@@ -12,11 +12,34 @@
     "s14": "node sketches/14",
     "d14": "node src/14/index.js",
     "d15": "node src/15/index.js",
-    "d16": "node src/16/index.js"
+    "d16": "node src/16/index.js",
+    "d17": "node src/17/index.js",
+    "d18": "node src/18/index1.js",
+    "d19": "node src/19/index.js",
+    "d20": "node src/20/index.js",
+    "d21": "node src/21/index.js",
+    "d22": "node src/22/index.js",
+    "d23": "node src/23/index.js",
+    "d24": "node src/24/index.js",
+    "d25": "node src/25/index.js",
+    "d26": "node src/26/index.js",
+    "d27": "node src/27/index.js",
+    "d28": "node src/28/index.js",
+    "t28": "node src/28/test.js",
+    "d29": "node src/29/index.js",
+    "d30": "node src/30/index.js",
+    "d31": "node src/31/index.js",
+    "d32": "node src/32/index.js"
   },
-  "dependencies":{
+  "dependencies": {
     "pug": "^2.0.4",
-    "parcel-bundler": "^1.12.4"
+    "parcel-bundler": "^1.12.4",
+    "http-auth": "^3.2.3",
+    "sequelize": "^4.33.4",
+    "pg": "^7.4.1",
+    "pg-hstore": "^2.3.2",
+    "cookies": "^0.5.1",
+    "moment-timezone": "^0.5.0"
   },
   "engines": {
     "node": "12.x"
