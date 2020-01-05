@@ -2,6 +2,33 @@
 //Procfile を作成　16番目でやったようにする
 //上の階層にあるprocfileを変更　ルートのpackage.jsonを修正
 
+//Herokuにログイン
+//heroku login -i
+
+//Heroku のサーバーを作成
+//heroku create
+//https://warm-island-46092.herokuapp.com/ | https://git.heroku.com/warm-island-46092.git
+
+//Heroku で利用する PostgreSQL のデータベースを作成 Heroku 上に開発用の簡易的な PostgreSQL のデータベースを作成
+//heroku addons:create heroku-postgresql:hobby-dev
+
+/*このようなメッセージがでた
+Creating heroku-postgresql:hobby-dev on ⬢ xxxxxxxxx-xxxxxxx-xxxxxx... free
+Database has been created and is available
+ ! This database is empty. If upgrading, you can transfer
+ ! data from another database with pg:copy
+Created postgresql-defined-76257 as DATABASE_URL
+Use heroku addons:docs heroku-postgresql to view documentation
+*/
+
+//Herokuにデプロイ
+//git push heroku master
+
+//htttpでのアクセスを禁止する
+
+
+
+
 'use strict';
 const http = require('http');
 const auth = require('http-auth');

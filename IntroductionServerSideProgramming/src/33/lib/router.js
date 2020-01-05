@@ -5,6 +5,14 @@ const postsHandler = require('./posts-handler');
 const util = require('./handler-util');
 
 function route(req, res){
+    //process.env.DATABASE_URL という環境変数がある場合、 つまり本番のデータベースが存在している Heroku 環境であり、
+    //かつ、 x-forwarded-proto というヘッダの値が http であるときのみ真となる
+    //x-forwarded-proto ヘッダには、 Heroku が Node.js のアプリケーションに対して
+    //内部的にリクエストを受け渡す際にアクセスで利用されたプロトコルが含まれています。
+    if (process.env.DATABASE_URL
+        && req.headers['x-forwarded-proto'] === 'http'){
+            util.handleNotFound(req, res);
+        }
     switch (req.url) {
         case '/posts':
             postsHandler.handle(req, res);
