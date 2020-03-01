@@ -1,0 +1,14 @@
+## テンプレのつくりかた
+express --view=pug express-api
+
+## 実行の仕方
+$ yarn start
+$ yarn install 
+Chrome で http://localhost:3000/ にアクセス
+
+## 脆弱性
+NetworkでlocalhostのアクセスをみるとHeaderの項目に下記がある
+X-Powered-By: Express
+これは、なんのフレームワークで作ったかがわかってしまう。脆弱性をつかれると危険。
+
+
