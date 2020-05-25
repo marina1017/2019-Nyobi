@@ -25,13 +25,13 @@ const Schedule = loader.database.define('schedules', {
     allowNull: false
   }
 }, {
-  freezeTableName: true,
-  timestamps: false,
-  indexes: [
-    {
-      fields: ['createdBy']
-    }
-  ]
-});
+    freezeTableName: true,
+    timestamps: false,
+    indexes: [
+      {
+        fields: ['createdBy']
+      }
+    ]
+  });
 
 module.exports = Schedule;

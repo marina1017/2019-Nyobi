@@ -23,13 +23,13 @@ const Availability = loader.database.define('availabilities', {
     allowNull: false
   }
 }, {
-  freezeTableName: true,
-  timestamps: false,
-  indexes: [
-    {
-      fields: ['scheduleId']
-    }
-  ]
-});
+    freezeTableName: true,
+    timestamps: false,
+    indexes: [
+      {
+        fields: ['scheduleId']
+      }
+    ]
+  });
 
 module.exports = Availability;

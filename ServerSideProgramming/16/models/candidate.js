@@ -18,11 +18,13 @@ const Candidate = loader.database.define('candidates', {
     allowNull: false
   }
 }, {
-  freezeTableName: true,
-  timestamps: false,
-  indexes: [
-    { fields: ['scheduleId'] }
-  ]
-});
+    freezeTableName: true,
+    timestamps: false,
+    indexes: [
+      {
+        fields: ['scheduleId']
+      }
+    ]
+  });
 
 module.exports = Candidate;

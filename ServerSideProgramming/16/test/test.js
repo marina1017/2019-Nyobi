@@ -1,12 +1,12 @@
 'use strict';
 const request = require('supertest');
+const assert = require('assert');
 const app = require('../app');
+const passportStub = require('passport-stub');
 const User = require('../models/user');
 const Schedule = require('../models/schedule');
 const Candidate = require('../models/candidate');
-const passportStub = require('passport-stub');
 const Availability = require('../models/availability');
-const assert = require('assert');
 
 describe('/login', () => {
   before(() => {
@@ -25,15 +25,15 @@ describe('/login', () => {
       .expect('Content-Type', 'text/html; charset=utf-8')
       .expect(/<a href="\/auth\/github"/)
       .expect(200, done);
-  })
+  });
 
   it('ログイン時はユーザー名が表示される', (done) => {
     request(app)
       .get('/login')
       .expect(/testuser/)
       .expect(200, done);
-  })
-})
+  });
+});
 
 describe('/logout', () => {
   it('/ にリダイレクトされる', (done) => {
@@ -63,10 +63,9 @@ describe('/schedules', () => {
         .expect('Location', /schedules/)
         .expect(302)
         .end((err, res) => {
-          let createdSchedulePath = res.headers.location;
+          const createdSchedulePath = res.headers.location;
           request(app)
             .get(createdSchedulePath)
-            // TODO 作成された予定と候補が表示されていることをテストする
             .expect(/テスト予定1/)
             .expect(/テストメモ1/)
             .expect(/テストメモ2/)
@@ -74,11 +73,10 @@ describe('/schedules', () => {
             .expect(/テスト候補2/)
             .expect(/テスト候補3/)
             .expect(200)
-            .end((err, res) => { deleteScheduleAggregate(createdSchedulePath.split('/schedules/')[1], done, err); });
+            .end((err, res) => { deleteScheduleAggregate(createdSchedulePath.split('/schedules/')[1], done, err);});
         });
     });
   });
-
 });
 
 describe('/schedules/:scheduleId/users/:userId/candidates/:candidateId', () => {
@@ -104,9 +102,8 @@ describe('/schedules/:scheduleId/users/:userId/candidates/:candidateId', () => {
             where: { scheduleId: scheduleId }
           }).then((candidate) => {
             // 更新がされることをテスト
-            const userId = 0;
             request(app)
-              .post(`/schedules/${scheduleId}/users/${userId}/candidates/${candidate.candidateId}`)
+              .post(`/schedules/${scheduleId}/users/${0}/candidates/${candidate.candidateId}`)
               .send({ availability: 2 }) // 出席に更新
               .expect('{"status":"OK","availability":2}')
               .end((err, res) => {
@@ -135,10 +132,10 @@ function deleteScheduleAggregate(scheduleId, done, err) {
       }).then((candidates) => {
         const promises = candidates.map((c) => { return c.destroy(); });
         Promise.all(promises).then(() => {
-          Schedule.findByPk(scheduleId).then((s) => {
-            s.destroy().then(() => {
+          Schedule.findByPk(scheduleId).then((s) => { 
+            s.destroy().then(() => { 
               if (err) return done(err);
-              done();
+              done(); 
             });
           });
         });
