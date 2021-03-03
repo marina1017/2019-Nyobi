@@ -32,7 +32,7 @@
     "d32": "node src/32/index.js"
   },
   "dependencies": {
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "parcel-bundler": "^1.12.4",
     "http-auth": "^3.2.3",
     "sequelize": "^4.33.4",
